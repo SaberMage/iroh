@@ -283,6 +283,11 @@ impl RelaySender {
         true
     }
 
+    /// Cancels an in-progress reservation, or releases a granted but unused permit.
+    pub(super) fn abort_send(&mut self) {
+        self.sender.abort_send();
+    }
+
     pub(super) fn poll_send(
         &mut self,
         cx: &mut Context,
